@@ -27,6 +27,7 @@
 /* Charybdis-specific features. */
 
 #ifdef POINTING_DEVICE_ENABLE
+#define CHARYBDIS_DRAGSCROLL_REVERSE_Y
 // Automatically enable the pointer layer when moving the trackball.  See also:
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`

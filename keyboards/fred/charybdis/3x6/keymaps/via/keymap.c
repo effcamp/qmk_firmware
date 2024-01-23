@@ -20,6 +20,8 @@ enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_LOWER,
     LAYER_RAISE,
+    LAYER_GAMING,
+    LAYER_GAMING_FN,
     LAYER_POINTER,
 };
 
@@ -42,18 +44,25 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define RAISE MO(LAYER_RAISE)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
+#define ALT_ESC MT(MOD_LALT, KC_ESC)
+#define BSPC_L2 LT(LAYER_RAISE, KC_BSPC) 
+#define SPC_LOWER LT(LAYER_LOWER, KC_SPC) 
+#define SHFT_ENTER MT(MOD_RSFT, KC_ENT) 
+
+
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       KC_LGUI,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_RGUI,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_QUOT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_RCTL,
+       ALT_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+       KC_LCTL,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, SHFT_ENTER,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_BSPC,  KC_SPC,   LOWER,      RAISE,  KC_ENT
+                                  KC_LGUI,  KC_LSFT,   RAISE,      BSPC_L2,  SPC_LOWER
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -68,8 +77,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   XXXXXXX, XXXXXXX, _______,    XXXXXXX, _______
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
-
+  
   [LAYER_RAISE] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT, EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                  _______, _______, XXXXXXX,    _______, XXXXXXX
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_GAMING] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT, EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                  _______, _______, XXXXXXX,    _______, XXXXXXX
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_GAMING_FN] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
@@ -94,6 +127,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
+
+enum combos {
+     FD_LEFT_PAREN,
+     JK_RIGHT_PAREN,
+     // ER_LEFT_BRACE,
+     // UI_RIGHT_BRACE,
+     CV_LEFT_BRACKET,
+     MCOMM_RIGHT_BRACKET,
+     PMIN_EQUALS,
+     SPC_SHFT_NUM_LAYER,
+     COL_QUOT_GRAVE,
+};
+
+const uint16_t PROGMEM left_parens_combo[] = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM right_parens_combo[] = {KC_J, KC_K, COMBO_END};
+// const uint16_t PROGMEM left_brace_combo[] = {KC_E, KC_R, COMBO_END};
+// const uint16_t PROGMEM right_brace_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM left_bracket_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM right_bracket_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM equals_combo[] = {KC_P, KC_MINS, COMBO_END};
+const uint16_t PROGMEM num_layer_combo[] = {SPC_LOWER, KC_LSFT, COMBO_END};
+const uint16_t PROGMEM grave_combo[] = {KC_SCLN, KC_QUOT, COMBO_END};
+
+
+combo_t key_combos[] = {
+     [FD_LEFT_PAREN] = COMBO(left_parens_combo, S(KC_9)),
+     [JK_RIGHT_PAREN] = COMBO(right_parens_combo, S(KC_0)),
+     // [ER_LEFT_BRACE] = COMBO(left_brace_combo, S(KC_LBRC)),
+     // [UI_RIGHT_BRACE] = COMBO(right_brace_combo, S(KC_RBRC)),
+     [CV_LEFT_BRACKET] = COMBO(left_bracket_combo, KC_LBRC),
+     [MCOMM_RIGHT_BRACKET] = COMBO(right_bracket_combo, KC_RBRC),
+     [PMIN_EQUALS] = COMBO(equals_combo, KC_EQL),
+     [SPC_SHFT_NUM_LAYER] = COMBO(num_layer_combo, RAISE),
+     [COL_QUOT_GRAVE] = COMBO(grave_combo, KC_GRV),
+};
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
