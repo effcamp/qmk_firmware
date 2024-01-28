@@ -136,7 +136,7 @@ enum combos {
      CV_LEFT_BRACKET,
      MCOMM_RIGHT_BRACKET,
      PMIN_EQUALS,
-     SPC_SHFT_NUM_LAYER,
+     // SPC_SHFT_NUM_LAYER,
      COL_QUOT_GRAVE,
 };
 
@@ -147,7 +147,7 @@ const uint16_t PROGMEM right_parens_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM left_bracket_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM right_bracket_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM equals_combo[] = {KC_P, KC_MINS, COMBO_END};
-const uint16_t PROGMEM num_layer_combo[] = {SPC_LOWER, KC_LSFT, COMBO_END};
+// const uint16_t PROGMEM num_layer_combo[] = {SPC_LOWER, KC_LSFT, COMBO_END};
 const uint16_t PROGMEM grave_combo[] = {KC_SCLN, KC_QUOT, COMBO_END};
 
 
@@ -159,7 +159,7 @@ combo_t key_combos[] = {
      [CV_LEFT_BRACKET] = COMBO(left_bracket_combo, KC_LBRC),
      [MCOMM_RIGHT_BRACKET] = COMBO(right_bracket_combo, KC_RBRC),
      [PMIN_EQUALS] = COMBO(equals_combo, KC_EQL),
-     [SPC_SHFT_NUM_LAYER] = COMBO(num_layer_combo, RAISE),
+     // [SPC_SHFT_NUM_LAYER] = COMBO(num_layer_combo, RAISE),
      [COL_QUOT_GRAVE] = COMBO(grave_combo, KC_GRV),
 };
 
