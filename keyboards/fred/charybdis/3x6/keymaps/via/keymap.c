@@ -45,9 +45,9 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 #define ALT_ESC MT(MOD_LALT, KC_ESC)
-#define BSPC_L2 LT(LAYER_RAISE, KC_BSPC)
-#define SPC_LOWER LT(LAYER_LOWER, KC_SPC)
-#define SHFT_ENTER MT(MOD_RSFT, KC_ENT)
+#define BSPC_L2 LT(LAYER_RAISE, KC_BSPC) 
+#define SPC_LOWER LT(LAYER_LOWER, KC_SPC) 
+#define SHFT_ENTER MT(MOD_RSFT, KC_ENT) 
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   XXXXXXX, XXXXXXX, _______,    XXXXXXX, _______
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
-
+  
   [LAYER_RAISE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX, XXXXXXX,
