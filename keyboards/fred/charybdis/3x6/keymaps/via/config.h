@@ -21,8 +21,15 @@
 #    define DYNAMIC_KEYMAP_LAYER_COUNT 7
 #endif // VIA_ENABLE
 
+#define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
+#define ONESHOT_TIMEOUT 5000
+#define COMBO_TERM 25
+#define COMBO_MUST_HOLD_MODS
+#define COMBO_HOLD_TERM 175
+
 /* Disable unused features. */
-#define NO_ACTION_ONESHOT
+/*#define NO_ACTION_ONESHOT*/
 
 /* Charybdis-specific features. */
 

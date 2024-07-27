@@ -49,9 +49,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define SPC_LOWER LT(LAYER_LOWER, KC_SPC)
 #define SHFT_ENTER MT(MOD_RSFT, KC_ENT)
 
-
-
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
@@ -128,40 +125,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
- enum combos {
-     FD_CONTROL,
-     /*JK_RIGHT_PAREN,*/
-     /*ER_LEFT_BRACE,*/
-     /*UI_RIGHT_BRACE,*/
-     /*CV_LEFT_BRACKET,*/
-     /*MCOMM_RIGHT_BRACKET,*/
-     /*PMIN_EQUALS,*/
-     /*SPC_SHFT_NUM_LAYER,*/
-     /*COL_QUOT_GRAVE,*/
+enum combos {
+    FD_LEFT_CONTROL,
+    JK_RIGHT_CONTROL,
+    SD_LEFT_ALT,
+    KL_RIGHT_ALT,
+    AS_LEFT_ESC,
+    COMDOT_SEMICOL,
 };
 
-const uint16_t PROGMEM left_control_combo[] = {KC_F, KC_D, COMBO_END};
-/*const uint16_t PROGMEM right_parens_combo[] = {KC_J, KC_K, COMBO_END};*/
-/*const uint16_t PROGMEM left_brace_combo[] = {KC_E, KC_R, COMBO_END};*/
-/*const uint16_t PROGMEM right_brace_combo[] = {KC_U, KC_I, COMBO_END};*/
-/*const uint16_t PROGMEM left_bracket_combo[] = {KC_C, KC_V, COMBO_END};*/
-/*const uint16_t PROGMEM right_bracket_combo[] = {KC_M, KC_COMM, COMBO_END};*/
-/*const uint16_t PROGMEM equals_combo[] = {KC_P, KC_MINS, COMBO_END};*/
+const uint16_t PROGMEM left_control_combo[]  = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM right_control_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM left_alt_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM right_alt_combo[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM right_esc_combo[]  = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM semicolon_combo[] = {KC_DOT, KC_COMM, COMBO_END};
+/*const uint16_t PROGMEM equals_combo[]        = {KC_P, KC_MINS, COMBO_END};*/
 /*const uint16_t PROGMEM num_layer_combo[] = {SPC_LOWER, KC_LSFT, COMBO_END};*/
 /*const uint16_t PROGMEM grave_combo[] = {KC_SCLN, KC_QUOT, COMBO_END};*/
 
-
 combo_t key_combos[] = {
-     [FD_CONTROL] = COMBO(left_control_combo, KC_LCTL),
-     /*[JK_RIGHT_PAREN] = COMBO(right_parens_combo, S(KC_0)),*/
-     /*[ER_LEFT_BRACE] = COMBO(left_brace_combo, S(KC_LBRC)),*/
-     /*[UI_RIGHT_BRACE] = COMBO(right_brace_combo, S(KC_RBRC)),*/
-     /*[CV_LEFT_BRACKET] = COMBO(left_bracket_combo, KC_LBRC),*/
-     /*[MCOMM_RIGHT_BRACKET] = COMBO(right_bracket_combo, KC_RBRC),*/
-     /*[PMIN_EQUALS] = COMBO(equals_combo, KC_EQL),*/
-     /*[SPC_SHFT_NUM_LAYER] = COMBO(num_layer_combo, RAISE),*/
-     /*[COL_QUOT_GRAVE] = COMBO(grave_combo, KC_GRV),*/
+    [FD_LEFT_CONTROL]  = COMBO(left_control_combo, OSM(MOD_LCTL)),
+    [JK_RIGHT_CONTROL] = COMBO(right_control_combo, OSM(MOD_LCTL)),
+    [SD_LEFT_ALT] = COMBO(left_alt_combo, OSM(MOD_LALT)),
+    [KL_RIGHT_ALT] = COMBO(right_alt_combo, OSM(MOD_LALT)),
+    [AS_LEFT_ESC]     = COMBO(right_esc_combo, KC_ESC),
+    [COMDOT_SEMICOL] = COMBO(semicolon_combo, KC_SCLN),
+    /*[PMIN_EQUALS]         = COMBO(equals_combo, KC_EQL),*/
+    /*[SPC_SHFT_NUM_LAYER] = COMBO(num_layer_combo, RAISE),*/
+    /*[COL_QUOT_GRAVE] = COMBO(grave_combo, KC_GRV),*/
 };
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1, KC_SPC):
+            return 150;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
